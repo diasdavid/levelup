@@ -15,6 +15,7 @@ var referee = require('referee')
   , levelup = require('../lib/levelup.js')
   , errors  = require('level-errors')
   , dbidx   = 0
+  , isNode  = require('detect-node')
 
 assert(levelup.errors === errors);
 
@@ -45,6 +46,9 @@ module.exports.nextLocation = function () {
 }
 
 module.exports.cleanup = function (callback) {
+  if (!isNode) {
+    return callback()
+  }
   fs.readdir(__dirname, function (err, list) {
     if (err) return callback(err)
 
@@ -95,7 +99,12 @@ module.exports.commonTearDown = function (done) {
 }
 
 module.exports.loadBinaryTestData = function (callback) {
-  fs.readFile(path.join(__dirname, 'data/testdata.bin'), callback)
+  var data
+  try {
+    data = fs.readFileSync(path.join(__dirname, 'data/testdata.bin'))
+  } catch (err) {
+    return callback(err)
+  }
 }
 
 module.exports.binaryTestDataMD5Sum = '920725ef1a3b32af40ccd0b78f4a62fd'

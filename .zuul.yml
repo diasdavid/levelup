@@ -4,3 +4,5 @@ browsers:
     version: latest
   - name: chrome
     version: latest
+browserify:
+  - transform: brfs

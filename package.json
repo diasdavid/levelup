@@ -44,9 +44,11 @@
   },
   "devDependencies": {
     "async": "~1.5.0",
+    "brfs": "^1.4.3",
     "browserify": "^14.3.0",
     "bustermove": "~1.0.0",
     "delayed": "~1.0.1",
+    "detect-node": "^2.0.3",
     "faucet": "~0.0.1",
     "leveldown": "^1.1.0",
     "memdown": "~1.1.0",
@@ -66,9 +68,8 @@
   },
   "scripts": {
     "test": "tape test/*-test.js | faucet",
-    "test-browser": "zuul -- test/*-test.js",
+    "test-browser": "zuul -- test/json-test.js",
     "test-browser-local": "zuul --local -- test/*-test.js"
-
   },
   "license": "MIT"
 }
