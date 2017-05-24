@@ -46,7 +46,6 @@
     "async": "~1.5.0",
     "browserify": "^14.3.0",
     "bustermove": "~1.0.0",
-    "tap": "~2.3.1",
     "delayed": "~1.0.1",
     "faucet": "~0.0.1",
     "leveldown": "^1.1.0",
@@ -55,7 +54,9 @@
     "referee": "~1.2.0",
     "rimraf": "~2.4.3",
     "slow-stream": "0.0.4",
-    "tape": "~4.2.1"
+    "tap": "~2.3.1",
+    "tape": "~4.2.1",
+    "zuul": "^3.11.1"
   },
   "browser": {
     "./lib/leveldown.js": false,
@@ -64,7 +65,10 @@
     "semver": false
   },
   "scripts": {
-    "test": "tape test/*-test.js | faucet"
+    "test": "tape test/*-test.js | faucet",
+    "test-browser": "zuul -- test/*-test.js",
+    "test-browser-local": "zuul --local -- test/*-test.js"
+
   },
   "license": "MIT"
 }
